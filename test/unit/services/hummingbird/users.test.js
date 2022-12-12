@@ -12,7 +12,7 @@ const responseMock = {
 
 const errorMock = {
   response: {
-    statusCode: 401,
+    statusCode: 400,
   },
 };
 
@@ -43,9 +43,6 @@ test.serial('Test create user to humming bird', async (t) => {
 test.serial('Test create user to humming bird ERROR', async (t) => {
   gotStub.rejects(errorMock);
   const { accountId, ...userMockMissing } = userMock;
-  try {
-    await hummingBirdService.loginIntoHummingBird(userMockMissing);
-  } catch (error) {
-    t.is(error.response.statusCode, errorMock.response.statusCode);
-  }
+  const res = await hummingBirdService.createUser(userMockMissing);
+  t.is(res.response.statusCode, errorMock.response.statusCode);
 });
