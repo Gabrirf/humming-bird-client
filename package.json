@@ -1,6 +1,6 @@
 {
   "name": "humming-bird-client",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Humming Bird API client",
   "main": "src/index.js",
   "scripts": {
