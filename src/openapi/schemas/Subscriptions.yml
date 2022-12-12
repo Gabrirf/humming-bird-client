@@ -1,0 +1,27 @@
+SubscriptionPayload:
+  type: object
+  additionalProperties: false
+  required:
+    - accountId
+  properties:
+    accountId:
+      type: string
+    subscription:
+      type: object
+      properties:
+        subscriberAccountId:
+          type: string
+        productId:
+          type: string
+        startTime:
+          type: string
+          format: date
+        ipPools:
+          type: array
+          items:
+            type: object
+            properties:
+              carrier:
+                type: string
+              poolId:
+                type: string

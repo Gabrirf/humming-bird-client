@@ -1,0 +1,25 @@
+parameters: []
+put:
+  summary: Subscribe to all assets in account
+  requestBody:
+    description: Activate all the assets of the account with the product
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/SubscriptionPayload'
+        examples:
+          User:
+            $ref: '#/components/examples/SubscriptionPayload'
+  responses:
+    '201':
+      description: Created user info
+    '400':
+      $ref: '#/components/responses/BadRequest'
+    '401':
+      $ref: '#/components/responses/Unauthorized'
+    '404':
+      $ref: '#/components/responses/NotFound'
+    '500':
+      $ref: '#/components/responses/ServerError'
+    '503':
+      $ref: '#/components/responses/ServiceUnavailable'

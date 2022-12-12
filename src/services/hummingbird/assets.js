@@ -1,4 +1,4 @@
-const { getToHummingBird } = require('./core');
+const { getToHummingBird, putToHummingBird } = require('./core');
 
 async function getAssetsByAccount(accountId) {
   const query = `?accountId=${accountId}`;
@@ -6,6 +6,12 @@ async function getAssetsByAccount(accountId) {
   return getToHummingBird({ endpoint, query });
 }
 
+async function activateAsset(iccid, body) {
+  const endpoint = `/assets/${iccid}/subscribe`;
+  return putToHummingBird({ endpoint, body });
+}
+
 module.exports = {
   getAssetsByAccount,
+  activateAsset,
 };
