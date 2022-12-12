@@ -59,8 +59,8 @@ async function sendRequest(request, data, retry = false) {
   }
 }
 
-async function getToHummingBird(endpoint, query) {
-  return sendRequest(got.get, { endpoint, query });
+async function getToHummingBird(data) {
+  return sendRequest(got.get, data);
 }
 
 async function postToHummingBird(data) {
