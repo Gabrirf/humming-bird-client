@@ -16,33 +16,16 @@ const errorMock = {
   },
 };
 
-const userMock = {
-  accountId: 'string',
-  username: 'string',
-  password: 'string',
-  email: 'string',
-  status: 'string',
-  permissions: [
-    {
-      accountId: 'string',
-      roles: [
-        'string',
-      ],
-    },
-  ],
-};
-
-const gotStub = sinon.stub(got, 'post');
+const gotStub = sinon.stub(got, 'get');
 
 test.serial('Test create user to humming bird', async (t) => {
   gotStub.returns(responseMock);
-  const res = await hummingBirdService.createUser(userMock);
+  const res = await hummingBirdService.getAssetsByAccount('accountId');
   t.is(res.token, responseMock.body.token);
 });
 
 test.serial('Test create user to humming bird ERROR', async (t) => {
   gotStub.rejects(errorMock);
-  const { accountId, ...userMockMissing } = userMock;
-  const res = await hummingBirdService.createUser(userMockMissing);
+  const res = await hummingBirdService.getAssetsByAccount('');
   t.is(res.response.statusCode, errorMock.response.statusCode);
 });
