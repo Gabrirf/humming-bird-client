@@ -18,7 +18,7 @@ async function activateAllAssets(req, res, next) {
     const assetsList = await hummingBirdService.getAssetsByAccount(accountId);
 
     const reshapedAssets = arrayUtils.reshapeRows(assetsList, 10);
-    const assetsActivationResults = reshapedAssets.map(async (assetSet) => {
+    const assetsActivationResultsPromises = reshapedAssets.map(async (assetSet) => {
       const results = [];
       // eslint-disable-next-line no-restricted-syntax
       for (const asset of assetSet) {
@@ -26,9 +26,12 @@ async function activateAllAssets(req, res, next) {
         const result = await hummingBirdService.activateAsset(asset.id, req.body);
         results.push(result);
       }
-    }).flat();
+      return results;
+    });
 
-    return res.status(200).send(assetsActivationResults);
+    const assetsActivationResults = await Promise.all(assetsActivationResultsPromises);
+
+    return res.status(200).send(assetsActivationResults.flat());
   } catch (err) {
     return next(err);
   }
