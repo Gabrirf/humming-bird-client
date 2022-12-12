@@ -4,10 +4,10 @@ const config = require('./config');
 
 const { port } = config.app;
 
-app.listen(port, err => {
+app.listen(port, (err) => {
   if (err) {
     logger.error(err);
     return;
   }
-  logger.info(`Saints app listening on port ${port}!`);
+  logger.info(`App listening on port ${port}!`);
 });

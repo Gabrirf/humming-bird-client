@@ -1,5 +1,5 @@
-const pingController = require('./ping');
+const usersController = require('./users');
 
 module.exports = {
-  pingController,
+  usersController,
 };
