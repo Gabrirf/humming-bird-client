@@ -9,3 +9,7 @@ services:
       - "${PORT}:${PORT}"
     environment:
       - PORT
+      - HB_URL
+      - HB_USER
+      - HB_PASS
+
