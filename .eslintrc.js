@@ -4,12 +4,24 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'plugin:ava/recommended',
+  ],
   overrides: [
   ],
   parserOptions: {
     ecmaVersion: 'latest',
   },
   rules: {
+    'ava/no-ignored-test-files': ['error', { files: ['**/*.test.js'] }],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts', '.d.ts', '.cjs'],
+        moduleDirectory: ['src', 'node_modules'],
+      },
+    },
   },
 };

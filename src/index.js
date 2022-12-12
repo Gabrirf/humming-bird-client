@@ -1,1 +1,1 @@
-  console.log("This is a bad idea :(")
+console.log('This is a good idea :)');
