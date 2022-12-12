@@ -1,4 +1,5 @@
 const got = require('got');
+const { HttpStatusError } = require('common-errors');
 
 const INVALID_CODE = 'InvalidCredentials';
 
@@ -50,12 +51,13 @@ async function sendRequest(request, data, retry = false) {
     const res = await request(url, { ...options });
     return res.body;
   } catch (error) {
-    if (error.response && error.response.statusCode === 401) {
+    const { response = { body: {} } } = error;
+    if (response.statusCode === 401) {
       if (error.code === INVALID_CODE) {
         return sendRequest(request, data, true);
       }
     }
-    return error;
+    throw new HttpStatusError(response.statusCode, response.body.message);
   }
 }
 
