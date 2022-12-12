@@ -4,6 +4,8 @@
   "description": "Humming Bird API client",
   "main": "src/index.js",
   "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/Gabrirf/humming-bird-client/issues"
   },
-  "homepage": "https://github.com/Gabrirf/humming-bird-client#readme"
+  "homepage": "https://github.com/Gabrirf/humming-bird-client#readme",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
 }
