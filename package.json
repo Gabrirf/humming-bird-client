@@ -6,7 +6,12 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compose:test": "docker-compose -f docker/docker-compose.test.yml up -d",
+    "compose:test:down": "docker-compose -f docker/docker-compose.test.yml down",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html ava",
+    "test:watch": "cross-env NODE_ENV=test ava --watch --verbose",
+    "test:report": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-lcov ava || echo 1; node test/sonar.js",
+    "test:purge": "rm -r .nyc_output .scannerwork coverage"
   },
   "repository": {
     "type": "git",
@@ -20,9 +25,15 @@
   "homepage": "https://github.com/Gabrirf/humming-bird-client#readme",
   "devDependencies": {
     "ava": "^5.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.29.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-ava": "^13.2.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "nock": "^13.2.9",
+    "nyc": "^15.1.0",
+    "sinon": "^15.0.0",
+    "sonarqube-scanner": "^2.9.1",
+    "supertest": "^6.3.3"
   }
 }
