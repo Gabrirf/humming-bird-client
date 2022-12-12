@@ -1,0 +1,11 @@
+SubscriptionPayload:
+  summary: Subscription payload example
+  value:
+    accountId: string
+    subscription:
+      subscriberAccountId: string
+      productId: string
+      startTime: '2022-12-12'
+      ipPools:
+        - carrier: string
+          poolId: string
