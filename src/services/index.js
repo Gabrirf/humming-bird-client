@@ -1,3 +1,5 @@
-module.exports = {
+const hummingBirdService = require('./hummingbird');
 
+module.exports = {
+  hummingBirdService,
 };
