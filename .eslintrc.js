@@ -15,6 +15,7 @@ module.exports = {
   },
   rules: {
     'ava/no-ignored-test-files': ['error', { files: ['**/*.test.js'] }],
+    'ava/no-import-test-files': ['error', { files: ['**/*.test.js'] }],
   },
   settings: {
     'import/resolver': {
