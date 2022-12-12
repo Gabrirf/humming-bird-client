@@ -10,6 +10,11 @@ const config = {
     pass: process.env.API_PASS,
     bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS, 10),
   },
+  hummingbird: {
+    url: process.env.HB_URL,
+    username: process.env.HB_USER,
+    password: process.env.HB_PASS,
+  },
 };
 
 module.exports = config;

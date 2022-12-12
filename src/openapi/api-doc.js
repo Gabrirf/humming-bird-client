@@ -33,9 +33,8 @@ module.exports = {
     security: [
       {
         ipAuth: [],
-        basicAuth: [],
       },
     ],
   },
-  getDoc: filename => jsYaml.safeLoad(fs.readFileSync(path.resolve(path.dirname(filename), `${path.basename(filename, '.js')}.yml`), 'utf8')),
+  getDoc: (filename) => jsYaml.safeLoad(fs.readFileSync(path.resolve(path.dirname(filename), `${path.basename(filename, '.js')}.yml`), 'utf8')),
 };

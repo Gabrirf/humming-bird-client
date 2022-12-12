@@ -6,7 +6,7 @@ const { apiDoc } = require('../openapi/api-doc');
 const services = require('../services');
 const controllers = require('../controllers');
 const errorMiddleware = require('../middlewares/error-handler');
-const { ipAuth, basicAuth } = require('../middlewares/security-handler');
+const { ipAuth } = require('../middlewares/security-handler');
 
 module.exports = (app, config) => initialize({
   apiDoc,
@@ -20,7 +20,6 @@ module.exports = (app, config) => initialize({
   promiseMode: true,
   securityHandlers: {
     disabled: () => { throw new HttpStatusError(405, 'This method has been disabled'); },
-    ipAuth: req => ipAuth(req, config.trustedIps),
-    basicAuth,
+    ipAuth: (req) => ipAuth(req, config.trustedIps),
   },
 });

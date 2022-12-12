@@ -43,7 +43,6 @@ Starter API Rest in NodeJS to consume Humming Bird API Rest by PodGroup
  ┃ ┃ ┃ ┗ 📜Error.yml
  ┃ ┃ ┣ 📂security
  ┃ ┃ ┃ ┣ 📜IpAuth.yml
- ┃ ┃ ┃ ┣ 📜basicOAuth.yml
  ┃ ┃ ┃ ┗ 📜disabled.yml
  ┃ ┃ ┗ 📜api-doc.js
  ┃ ┣ 📂routes
