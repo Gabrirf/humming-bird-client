@@ -8,7 +8,7 @@ CreateUser:
     - email
     - permissions
   properties:
-    accoundId:
+    accountId:
       type: string
       minLength: 1
     username:

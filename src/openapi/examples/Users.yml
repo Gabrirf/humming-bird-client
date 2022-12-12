@@ -1,7 +1,7 @@
 CreateUser:
   summary: User body example
   value:
-    accoundId: accountId
+    accountId: accountId
     username: username
     password: password
     email: email
