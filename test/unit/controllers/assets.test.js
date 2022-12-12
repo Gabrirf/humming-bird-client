@@ -6,7 +6,8 @@ const { hummingBirdService } = require('../../../src/services');
 
 const { mockReq, mockRes, mockNext } = require('../../utils/controllers');
 
-const responseMock = { body: 'ok' };
+const responseAssetMock = { body: 'asset' };
+const responseSubsMock = { body: 'ok' };
 
 const errorMock = {
   code: 'BadRequest',
@@ -17,11 +18,11 @@ const getAssetsByAccountStub = sinon.stub(hummingBirdService, 'getAssetsByAccoun
 const activateAssetStub = sinon.stub(hummingBirdService, 'activateAsset');
 
 test('Get assets', async (t) => {
-  getAssetsByAccountStub.returns(Promise.resolve(responseMock));
+  getAssetsByAccountStub.returns(Promise.resolve(getAssetsByAccountStub));
   const query = { accountId: 'accountId' };
   const res = await assetsController.listAssets(mockReq({ query }), mockRes(), mockNext);
   t.is(res.statusCode, 200);
-  t.deepEqual(res.body, responseMock);
+  t.deepEqual(res.body, getAssetsByAccountStub);
 });
 
 test('Get assets Error', async (t) => {
@@ -33,12 +34,12 @@ test('Get assets Error', async (t) => {
 });
 
 test('Activate all assets', async (t) => {
-  getAssetsByAccountStub.returns(Promise.resolve([responseMock]));
-  activateAssetStub.returns(Promise.resolve(responseMock));
+  getAssetsByAccountStub.returns(Promise.resolve([responseAssetMock]));
+  activateAssetStub.returns(Promise.resolve(responseSubsMock));
   const body = { accountId: 'accountId' };
   const res = await assetsController.activateAllAssets(mockReq({ body }), mockRes(), mockNext);
   t.is(res.statusCode, 200);
-  t.deepEqual(res.body, [responseMock]);
+  t.deepEqual(res.body, [responseSubsMock]);
 });
 
 test('Activate all assets Error', async (t) => {

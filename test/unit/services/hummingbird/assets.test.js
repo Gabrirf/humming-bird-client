@@ -13,6 +13,9 @@ const responseMock = {
 const errorMock = {
   response: {
     statusCode: 400,
+    body: {
+      message: 'Invalid',
+    },
   },
 };
 
@@ -35,16 +38,19 @@ const payloadMock = {
 const getStub = sinon.stub(got, 'get');
 const putStub = sinon.stub(got, 'put');
 
-test.serial('Test create user to humming bird', async (t) => {
+test.serial('Get list of assets from account', async (t) => {
   getStub.returns(responseMock);
   const res = await hummingBirdService.getAssetsByAccount('accountId');
   t.is(res.token, responseMock.body.token);
 });
 
-test.serial('Test create user to humming bird ERROR', async (t) => {
+test.serial('Get list of assets from account ERROR', async (t) => {
   getStub.rejects(errorMock);
-  const res = await hummingBirdService.getAssetsByAccount('');
-  t.is(res.response.statusCode, errorMock.response.statusCode);
+  try {
+    await hummingBirdService.getAssetsByAccount('');
+  } catch (error) {
+    t.is(error.statusCode, errorMock.response.statusCode);
+  }
 });
 
 test.serial('Test activate asset to humming bird', async (t) => {
@@ -55,6 +61,9 @@ test.serial('Test activate asset to humming bird', async (t) => {
 
 test.serial('Test activate asset to humming bird ERROR', async (t) => {
   putStub.rejects(errorMock);
-  const res = await hummingBirdService.activateAsset('', payloadMock);
-  t.is(res.response.statusCode, errorMock.response.statusCode);
+  try {
+    await hummingBirdService.activateAsset('', payloadMock);
+  } catch (error) {
+    t.is(error.statusCode, errorMock.response.statusCode);
+  }
 });
