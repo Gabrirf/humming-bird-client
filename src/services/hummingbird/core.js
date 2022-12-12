@@ -1,5 +1,7 @@
 const got = require('got');
 
+const INVALID_CODE = 'InvalidCredentials';
+
 let config = {};
 let hummingBirdSession = {};
 
@@ -28,7 +30,51 @@ async function setConfig(hummingBirdConfig) {
   hummingBirdSession = await loginIntoHummingBird();
 }
 
+async function sendRequest(request, data, retry = false) {
+  const { endpoint, query, body: json } = data;
+  if (retry) {
+    hummingBirdSession = await loginIntoHummingBird();
+  }
+
+  const url = `${config.url}${endpoint}${query || ''}`;
+
+  const options = {
+    responseType: 'json',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': hummingBirdSession.token,
+    },
+    json,
+  };
+  try {
+    const res = await request(url, { ...options });
+    return res.body;
+  } catch (error) {
+    if (error.response && error.response.statusCode === 401) {
+      if (error.code === INVALID_CODE) {
+        return sendRequest(request, data, true);
+      }
+    }
+    return error;
+  }
+}
+
+async function getToHummingBird(endpoint, query) {
+  return sendRequest(got.get, { endpoint, query });
+}
+
+async function postToHummingBird(data) {
+  return sendRequest(got.post, data);
+}
+
+async function putToHummingBird(data) {
+  return sendRequest(got.put, data);
+}
+
 module.exports = {
   loginIntoHummingBird,
   setConfig,
+  getToHummingBird,
+  postToHummingBird,
+  putToHummingBird,
 };
