@@ -1,0 +1,11 @@
+CreateUser:
+  summary: User body example
+  value:
+    accountId: accountId
+    username: username
+    password: password
+    email: email
+    status: status
+    permissions:
+      - accountId: accountId
+        roles: ['role']

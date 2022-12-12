@@ -1,0 +1,15 @@
+version: "3.4"
+services:
+  api:
+    image: humming-bird-client:${TAG}
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT
+      - HB_URL
+      - HB_USER
+      - HB_PASS
+
