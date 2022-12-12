@@ -1,0 +1,19 @@
+{
+  "name": "humming-bird-client",
+  "version": "0.0.0",
+  "description": "Humming Bird API client",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabrirf/humming-bird-client.git"
+  },
+  "author": "Gabriel <gabrirf.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gabrirf/humming-bird-client/issues"
+  },
+  "homepage": "https://github.com/Gabrirf/humming-bird-client#readme"
+}
