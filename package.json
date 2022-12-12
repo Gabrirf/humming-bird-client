@@ -1,0 +1,63 @@
+{
+  "name": "humming-bird-client",
+  "version": "0.0.0",
+  "description": "Humming Bird API client",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore .",
+    "compose:test": "docker-compose -f docker/docker-compose.test.yml up -d",
+    "compose:test:down": "docker-compose -f docker/docker-compose.test.yml down",
+    "compose:app": "docker-compose --env-file .env -f docker/docker-compose.app.yml up -d",
+    "compose:app:build": "docker-compose --env-file .env -f docker/docker-compose.app.yml build",
+    "compose:app:down": "docker-compose --env-file .env -f docker/docker-compose.app.yml down",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html ava",
+    "test:watch": "cross-env NODE_ENV=test ava --watch --verbose",
+    "test:report": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-lcov ava || echo 1; node test/sonar.js",
+    "test:purge": "rm -r .nyc_output .scannerwork coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabrirf/humming-bird-client.git"
+  },
+  "author": "Gabriel <gabrirf.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gabrirf/humming-bird-client/issues"
+  },
+  "homepage": "https://github.com/Gabrirf/humming-bird-client#readme",
+  "dependencies": {
+    "common-errors": "^1.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.18.2",
+    "express-openapi": "^6.0.0",
+    "got": "^12.5.3",
+    "js-yaml": "^3.14.0",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.6.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "ava": "^5.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-ava": "^13.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nock": "^13.2.9",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "sinon": "^15.0.0",
+    "sonarqube-scanner": "^2.9.1",
+    "supertest": "^6.3.3"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ],
+    "require": [
+      "dotenv/config"
+    ]
+  }
+}

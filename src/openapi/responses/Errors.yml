@@ -1,0 +1,48 @@
+BadRequest:
+  description: Bad Request
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+Unauthorized:
+  description: Unauthorized
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+Forbidden:
+  description: Forbidden
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+NotFound:
+  description: Not Found
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+NotAllowed:
+  description: Not Allowed
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+Conflict:
+  description: Conflict
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+ServerError:
+  description: Internal Server Error
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
+ServiceUnavailable:
+  description: Service Unavailable
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Error'
