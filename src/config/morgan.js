@@ -14,7 +14,7 @@ const morganMiddleware = morgan('combined', {
   skip(_req, res) {
     return res.statusCode >= 400;
   },
-  stream: logger.stream.write,
+  stream: logger.stream,
 });
 
 module.exports = morganMiddleware;
