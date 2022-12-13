@@ -9,7 +9,8 @@ function getTrackPath(err) {
   return trackPath;
 }
 
-module.exports = function errorHandler(err, req, res) {
+// eslint-disable-next-line no-unused-vars
+module.exports = function errorHandler(err, req, res, _next) {
   const { method, path, body } = req;
 
   const formatOpenapiErrors = (errors) => errors.map(
