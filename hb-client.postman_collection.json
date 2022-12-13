@@ -89,7 +89,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"status\": \"status\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
 						},
 						"url": {
 							"raw": "{{hb_baseUrl}}/users",
@@ -131,7 +131,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{hb_baseUrl}}/assets?accountId=a",
+							"raw": "{{hb_baseUrl}}/assets?accountId={{accountId}}",
 							"host": [
 								"{{hb_baseUrl}}"
 							],
@@ -141,7 +141,7 @@
 							"query": [
 								{
 									"key": "accountId",
-									"value": "a"
+									"value": "{{accountId}}"
 								}
 							]
 						}
@@ -181,16 +181,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\",\n    \"ipPools\": [\n      {\n        \"carrier\": \"string\",\n        \"poolId\": \"string\"\n      }\n    ]\n  }\n}"
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\"\n  }\n}"
 						},
 						"url": {
-							"raw": "{{hb_baseUrl}}/assets/a/subscribe",
+							"raw": "{{hb_baseUrl}}/assets/{{iccid}}/subscribe",
 							"host": [
 								"{{hb_baseUrl}}"
 							],
 							"path": [
 								"assets",
-								"a",
+								"{{iccid}}",
 								"subscribe"
 							]
 						}
@@ -231,7 +231,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"status\": \"status\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
 						},
 						"url": {
 							"raw": "{{api_baseUrl}}/users",
@@ -274,7 +274,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\",\n    \"ipPools\": [\n      {\n        \"carrier\": \"string\",\n        \"poolId\": \"string\"\n      }\n    ]\n  }\n}"
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{api_baseUrl}}/assets/subscriptions/all",
@@ -388,6 +388,11 @@
 		{
 			"key": "productId",
 			"value": "63977f415a71ae1325aece4c",
+			"type": "default"
+		},
+		{
+			"key": "iccid",
+			"value": " gabriel.rflores0",
 			"type": "default"
 		}
 	]
