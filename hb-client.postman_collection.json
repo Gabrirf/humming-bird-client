@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "70053e81-b405-4879-bf6e-743944334e8f",
+		"name": "HB Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Humming Bird",
+			"item": [
+				{
+					"name": "Get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"if(responseJson.token){",
+									"    pm.collectionVariables.set('hb_token', responseJson.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"{{hb_username}}\",\n  \"password\": \"{{hb_password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{hb_baseUrl}}/auth/token",
+							"host": [
+								"{{hb_baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{hb_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{hb_baseUrl}}/users",
+							"host": [
+								"{{hb_baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all assets of an account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{hb_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{hb_baseUrl}}/assets?accountId={{accountId}}",
+							"host": [
+								"{{hb_baseUrl}}"
+							],
+							"path": [
+								"assets"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put asset subscription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{hb_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{hb_baseUrl}}/assets/{{iccid}}/subscribe",
+							"host": [
+								"{{hb_baseUrl}}"
+							],
+							"path": [
+								"assets",
+								"{{iccid}}",
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "Post user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"username\": \"test-gabriel\",\n  \"password\": \"test-leirbag\",\n  \"email\": \"nose@cual.es\",\n  \"permissions\": [\n    {\n      \"accountId\": \"{{accountId}}\",\n      \"roles\": [\n        \"readonly\"\n      ]\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{api_baseUrl}}/users",
+							"host": [
+								"{{api_baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate all assets of account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"accountId\": \"{{accountId}}\",\n  \"subscription\": {\n    \"subscriberAccountId\": \"{{accountId}}\",\n    \"productId\": \"{{productId}}\",\n    \"startTime\": \"2022-12-12\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{api_baseUrl}}/assets/subscriptions/all",
+							"host": [
+								"{{api_baseUrl}}"
+							],
+							"path": [
+								"assets",
+								"subscriptions",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all assets of account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{api_baseUrl}}/assets?accountId={{accountId}}",
+							"host": [
+								"{{api_baseUrl}}"
+							],
+							"path": [
+								"assets"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_baseUrl",
+			"value": "http://localhost:3000/v1",
+			"type": "default"
+		},
+		{
+			"key": "hb_baseUrl",
+			"value": "https://hummingbird-staging.podgroup.com",
+			"type": "default"
+		},
+		{
+			"key": "hb_username",
+			"value": "gabriel.rflores",
+			"type": "default"
+		},
+		{
+			"key": "hb_password",
+			"value": "serolfr.leirbag",
+			"type": "default"
+		},
+		{
+			"key": "hb_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "accountId",
+			"value": "71da1ce7-b0d5-5f23-90bf-936e3badc962",
+			"type": "default"
+		},
+		{
+			"key": "productId",
+			"value": "63977f415a71ae1325aece4c",
+			"type": "default"
+		},
+		{
+			"key": "iccid",
+			"value": " gabriel.rflores0",
+			"type": "default"
+		}
+	]
+}

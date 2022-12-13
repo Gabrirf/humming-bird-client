@@ -1,71 +1,73 @@
 # humming-bird-client
+
 Starter API Rest in NodeJS to consume Humming Bird API Rest by PodGroup
 
-# Structure
+## Instalation
 
+1. Download or clone this repo
+
+```bash
+git clone https://github.com/Gabrirf/humming-bird-client.git
 ```
+
+2. Install npm dependencies
+
+```bash
+npm i
+```
+
+3. Copy & configure env file
+
+```bash
+npm run copy:env
+```
+
+> You must insert your Humming Bird API username and password on variable.
+
+4. Build docker image and deploy app
+
+```bash
+npm run compose:app
+```
+
+Or simply run on your local with `npm start` for develop.
+
+## Architecture
+
+```bash
 📦humming-bird-client
  ┣ 📂.vscode
- ┃ ┣ 📜launch.json
- ┃ ┗ 📜settings.json
+ ┃ ┗ 📜launch.json # Debugging configuration file
  ┣ 📂docker
- ┃ ┣ 📜docker-compose.app.yml
- ┃ ┗ 📜docker-compose.test.yml
+ ┃ ┣ 📜docker-compose.app.yml # Build and deploy app
+ ┃ ┗ 📜docker-compose.test.yml # Deploy Sonarqube
  ┣ 📂src
- ┃ ┣ 📂config
- ┃ ┃ ┣ 📜morgan.js
- ┃ ┃ ┣ 📜openapi.js
- ┃ ┃ ┗ 📜winston.js
- ┃ ┣ 📂controllers
- ┃ ┃ ┣ 📜index.js
- ┃ ┃ ┗ 📜ping.js
- ┃ ┣ 📂helpers
+ ┃ ┣ 📂config # Modules configurations
+ ┃ ┣ 📂controllers # API controllers
+ ┃ ┣ 📂helpers # Common modules to make code easier
  ┃ ┃ ┣ 📂errors
- ┃ ┃ ┃ ┗ 📜error-codes.js
  ┃ ┃ ┣ 📂logger
- ┃ ┃ ┃ ┗ 📜winston.js
  ┃ ┃ ┣ 📂utils
- ┃ ┃ ┃ ┣ 📜base64.js
- ┃ ┃ ┃ ┗ 📜stack-info.js
- ┃ ┃ ┗ 📜index.js
- ┃ ┣ 📂loaders
- ┃ ┃ ┣ 📜express.js
- ┃ ┃ ┗ 📜index.js
- ┃ ┣ 📂middlewares
- ┃ ┃ ┣ 📜error-handler.js
- ┃ ┃ ┗ 📜security-handler.js
- ┃ ┣ 📂openapi
+ ┃ ┣ 📂loaders # Setup server and services on load
+ ┃ ┣ 📂middlewares # API middlewares
+ ┃ ┣ 📂openapi # Openapi (Swagger v3) specification
  ┃ ┃ ┣ 📂examples
- ┃ ┃ ┃ ┗ 📜Ping.yml
  ┃ ┃ ┣ 📂responses
- ┃ ┃ ┃ ┗ 📜Errors.yml
  ┃ ┃ ┣ 📂schemas
- ┃ ┃ ┃ ┗ 📜Error.yml
  ┃ ┃ ┣ 📂security
- ┃ ┃ ┃ ┣ 📜IpAuth.yml
- ┃ ┃ ┃ ┗ 📜disabled.yml
- ┃ ┃ ┗ 📜api-doc.js
- ┃ ┣ 📂routes
+ ┃ ┣ 📂routes # API routes
  ┃ ┃ ┗ 📂v1
- ┃ ┃ ┃ ┣ 📜ping.js
- ┃ ┃ ┃ ┗ 📜ping.yml
- ┃ ┣ 📂services
- ┃ ┃ ┗ 📜index.js
- ┃ ┣ 📜app.js
- ┃ ┣ 📜config.js
- ┃ ┗ 📜index.js
+ ┃ ┣ 📂services # External services
+ ┃ ┣ 📜app.js # App main
+ ┃ ┣ 📜config.js # Centralize user variables
+ ┃ ┗ 📜index.js # Launch app
  ┣ 📂test
  ┃ ┣ 📂unit
  ┃ ┃ ┣ 📂controllers
- ┃ ┃ ┃ ┗ 📜ping.test.js
  ┃ ┃ ┣ 📂loaders
- ┃ ┃ ┃ ┗ 📜express.test.js
  ┃ ┃ ┣ 📂middlewares
- ┃ ┃ ┃ ┣ 📜error-handler.test.js
- ┃ ┃ ┃ ┗ 📜security-handler.test.js
  ┃ ┃ ┗ 📂services
  ┃ ┣ 📂utils
- ┃ ┃ ┗ 📜controllers.js
  ┃ ┗ 📜sonar.js
  ┣ 📜.dockerignore
  ┣ 📜.editorconfig
@@ -89,14 +91,14 @@ Starter API Rest in NodeJS to consume Humming Bird API Rest by PodGroup
 - `morgan`
 - `winston`
 
-# Linter
+## Linter
 
 By using npm script, you can see and fix all linter errors and warning
 
 - `npm run lint`
 - `npm run lint:fix`
 
-# Test
+## Test
 
 There are npm script created to easily run test:
 

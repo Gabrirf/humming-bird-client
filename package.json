@@ -1,6 +1,6 @@
 {
   "name": "humming-bird-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Humming Bird API client",
   "main": "src/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "test": "cross-env NODE_ENV=test nyc --reporter=html ava",
     "test:watch": "cross-env NODE_ENV=test ava --watch --verbose",
     "test:report": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-lcov ava || echo 1; node test/sonar.js",
-    "test:purge": "rm -r .nyc_output .scannerwork coverage"
+    "test:purge": "rm -r .nyc_output .scannerwork coverage",
+    "copy:env": "cp env.template .env"
   },
   "repository": {
     "type": "git",

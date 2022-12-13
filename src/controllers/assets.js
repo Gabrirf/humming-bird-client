@@ -23,7 +23,7 @@ async function activateAllAssets(req, res, next) {
       // eslint-disable-next-line no-restricted-syntax
       for (const asset of assetSet) {
         // eslint-disable-next-line no-await-in-loop
-        const result = await hummingBirdService.activateAsset(asset.id, req.body);
+        const result = await hummingBirdService.activateAsset(asset.iccid, req.body);
         results.push(result);
       }
       return results;
