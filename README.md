@@ -32,6 +32,10 @@ npm run compose:app
 
 Or simply run on your local with `npm start` for develop.
 
+5. By default, the app deploy on port 3000 and all requests are versioned under `/v1` path. To use the app you can:
+    - **SwaggerUI** go to [localhost:3000/docs](http://localhost:3000/docs) to see swagger playground
+    - **Postman** Use the provided [postman collectión](./hb-client.postman_collection.json).
+
 ## Architecture
 
 ```bash
@@ -86,10 +90,10 @@ Or simply run on your local with `npm start` for develop.
 
 - `express`
 - `express-openapi`
-- `js-yaml`
 - `swagger-ui-express`
 - `morgan`
 - `winston`
+- `got`
 
 ## Linter
 
@@ -106,5 +110,6 @@ There are npm script created to easily run test:
 - `npm run test:watch`
 - `npm run test:report` Must be sonarqube running
     - To run sonarqube server: `npm run compose:test`
-    - First time deploy, change password to _adminadmin_
+    - First time deploy: user _admin_, password: _admin_
+        - change password to _adminadmin_
     - After the report go to [localhost:9000](http://localhost:9000/) and see analysis
